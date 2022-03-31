@@ -1,0 +1,710 @@
+{
+	"info": {
+		"_postman_id": "15fd9404-d546-4d32-a20f-cf8c40f158f5",
+		"name": "Toko",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Bikin-Toko",
+			"item": [
+				{
+					"name": "BikinToko",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"JSON Response\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData);",
+									"});",
+									"// const responseJson = pm.response.json();",
+									"// pm.test('kode status harus berisi 200', () => {",
+									"//     pm.response.to.have.status(200);",
+									"// });",
+									"",
+									"// pm.test('response Content-Type harus berisi application/json', () => {",
+									"//     pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');",
+									"// });",
+									"",
+									"// pm.test('isi body pada response harus sesuai', () => {",
+									"",
+									"//     pm.expect(responseJson).to.haveOwnProperty(\"message\");",
+									"",
+									"//     pm.expect(responseJson.message).to.be.a('string');",
+									"//     pm.expect(responseJson.message).to.not.equals('');",
+									"// });",
+									"",
+									"// pm.test('Harus mengembalikan kode dari toko', () => {",
+									"//     const {kode_toko} = responseJson",
+									"//     pm.expect(kode_toko).to.not.equals('');",
+									"",
+									"//     // memasukkan kode_toko ke env variable.",
+									"//     pm.environment.set('kodeToko', kode_toko);",
+									"// });",
+									"",
+									"const responseJson = pm.response.json();",
+									"",
+									"pm.test('response Content-Type harus berisi application/json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');",
+									"});",
+									"",
+									"pm.test('Harus mengembalikan kode dari toko', () => {",
+									"    const {kode_toko} = responseJson",
+									"    pm.expect(kode_toko).to.not.equals('');",
+									"",
+									"    // memasukkan kode_toko ke env variable.",
+									"    pm.environment.set('kodeToko', kode_toko);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_toko\": \"Toko Golang\",\n    \"domisili\": \"Tangerang\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base3000}}/v1/store/create",
+							"host": [
+								"{{base3000}}"
+							],
+							"path": [
+								"v1",
+								"store",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LihatSemuaToko",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"JSON Response\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData);",
+									"});",
+									"const responseJson = pm.response.json();",
+									"pm.test('Status Kode harus 200', () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('response Content-Type harus berisi application/json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');",
+									"});",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base3000}}/v1/store/getall",
+							"host": [
+								"{{base3000}}"
+							],
+							"path": [
+								"v1",
+								"store",
+								"getall"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LihatSatuToko",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"JSON Response\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData);",
+									"});",
+									"",
+									"pm.test('response Content-Type harus berisi application/json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base3000}}/v1/store/toko/:kodeToko",
+							"host": [
+								"{{base3000}}"
+							],
+							"path": [
+								"v1",
+								"store",
+								"toko",
+								":kodeToko"
+							],
+							"variable": [
+								{
+									"key": "kodeToko",
+									"value": "{{kodeToko}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateToko",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"JSON Response\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData);",
+									"});",
+									"",
+									"pm.test('response Content-Type harus berisi application/json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');",
+									"});",
+									"",
+									"pm.test('Ketika mendapatkan toko pertama harus sesuai dengan yang di update', () => {",
+									"    const baseUrl = pm.environment.get('baseUrl');",
+									"    const kodeToko = pm.environment.get('kodeToko');",
+									"",
+									"    pm.sendRequest(`${{baseUrl}}/shops/${{kodeToko}}`, (error, response) => {",
+									"        if (!error) {",
+									"            pm.test('toko harus updated', () => {",
+									"                pm.expect(response.code).to.equals(200);",
+									"                const { data } = response.json();",
+									"",
+									"            });",
+									"        }",
+									"    });",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_toko\": {{namaToko}},\n    \"domisili\": {{domisili}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base3000}}/v1/store/edit/:kodeToko",
+							"host": [
+								"{{base3000}}"
+							],
+							"path": [
+								"v1",
+								"store",
+								"edit",
+								":kodeToko"
+							],
+							"query": [
+								{
+									"key": "kodeToko",
+									"value": "",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "kodeToko",
+									"value": "{{kodeToko}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HapusToko",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// pm.test(\"Status code is 200\", function () {",
+									"//     pm.response.to.have.status(200);",
+									"// });",
+									"// pm.test(\"Your test name\", function () {",
+									"//     var jsonData = pm.response.json();",
+									"//     pm.expect(jsonData);",
+									"// });",
+									"",
+									"pm.test('status kode harus berisi 200', () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('response Content-Type harus berisi application/json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');",
+									"});",
+									"pm.test('ketika mencoba mendapatkan datanya harus mengembalikan 404', () => {",
+									"    const baseUrl = pm.environment.get('baseUrl');",
+									"    const kodeToko = pm.environment.get('kodeTokoKedua');",
+									"",
+									"    pm.sendRequest(`${baseUrl}/v1/store/delete/${kodeToko}`, (error, response) => {",
+									"        if (!error) {",
+									"            pm.test('harus mengembalikan response not found', () => {",
+									"                pm.expect(response.code).to.equals(404);",
+									"            });",
+									"        }",
+									"    });",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base3000}}/v1/store/delete/:kodeToko",
+							"host": [
+								"{{base3000}}"
+							],
+							"path": [
+								"v1",
+								"store",
+								"delete",
+								":kodeToko"
+							],
+							"variable": [
+								{
+									"key": "kodeToko",
+									"value": "{{kodeToko}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bikin-Buku",
+			"item": [
+				{
+					"name": "BikinTokoDua",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"JSON Response\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData);",
+									"});",
+									"// const responseJson = pm.response.json();",
+									"// pm.test('kode status harus berisi 200', () => {",
+									"//     pm.response.to.have.status(200);",
+									"// });",
+									"",
+									"// pm.test('response Content-Type harus berisi application/json', () => {",
+									"//     pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');",
+									"// });",
+									"",
+									"// pm.test('isi body pada response harus sesuai', () => {",
+									"",
+									"//     pm.expect(responseJson).to.haveOwnProperty(\"message\");",
+									"",
+									"//     pm.expect(responseJson.message).to.be.a('string');",
+									"//     pm.expect(responseJson.message).to.not.equals('');",
+									"// });",
+									"",
+									"// pm.test('Harus mengembalikan kode dari toko', () => {",
+									"//     const {kode_toko} = responseJson",
+									"//     pm.expect(kode_toko).to.not.equals('');",
+									"",
+									"//     // memasukkan kode_toko ke env variable.",
+									"//     pm.environment.set('kodeToko', kode_toko);",
+									"// });",
+									"",
+									"const responseJson = pm.response.json();",
+									"",
+									"pm.test('response Content-Type harus berisi application/json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');",
+									"});",
+									"",
+									"pm.test('Harus mengembalikan kode dari toko', () => {",
+									"    const {kode_toko} = responseJson",
+									"    pm.expect(kode_toko).to.not.equals('');",
+									"",
+									"    // memasukkan kode_toko ke env variable.",
+									"    pm.environment.set('kodeToko', kode_toko);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_toko\": \"Toko Golang\",\n    \"domisili\": \"Tangerang\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base3000}}/v1/store/create",
+							"host": [
+								"{{base3000}}"
+							],
+							"path": [
+								"v1",
+								"store",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateBook",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// pm.test(\"Status code is 200\", function () {",
+									"//     pm.response.to.have.status(200);",
+									"// });",
+									"// pm.test(\"Your test name\", function () {",
+									"//     var jsonData = pm.response.json();",
+									"//     pm.expect(jsonData);",
+									"// });",
+									"",
+									"const responseJson = pm.response.json();",
+									"pm.test('kode status harus berisi 200', () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('response Content-Type harus berisi application/json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');",
+									"});",
+									"",
+									"",
+									"pm.test('Harus mengembalikan kode dari buku', () => {",
+									"    const {kode_buku} = responseJson",
+									"    pm.expect(kode_buku).to.not.equals('');",
+									"",
+									"    pm.environment.set('kodeBuku', kode_buku);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Belajar \",\n    \"price\": 300000,\n    \"description\": \"Buku ini mengajarkan \"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base3000}}/v1/store/book/:kodeToko",
+							"host": [
+								"{{base3000}}"
+							],
+							"path": [
+								"v1",
+								"store",
+								"book",
+								":kodeToko"
+							],
+							"variable": [
+								{
+									"key": "kodeToko",
+									"value": "{{kodeToko}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllBooks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData);",
+									"});",
+									"",
+									"pm.test('response Content-Type harus berisi application/json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base3000}}/v1/store/book/all/:kodeToko",
+							"host": [
+								"{{base3000}}"
+							],
+							"path": [
+								"v1",
+								"store",
+								"book",
+								"all",
+								":kodeToko"
+							],
+							"variable": [
+								{
+									"key": "kodeToko",
+									"value": "{{kodeToko}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSingleBook",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// pm.test(\"Status code is 200\", function () {",
+									"//     pm.response.to.have.status(200);",
+									"// });",
+									"// pm.test(\"Your test name\", function () {",
+									"//     var jsonData = pm.response.json();",
+									"//     pm.expect(jsonData);",
+									"// });",
+									"",
+									"// pm.test('response Content-Type harus berisi application/json', () => {",
+									"//     pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');",
+									"// });",
+									"const responseJson = pm.response.json();",
+									"pm.test('Status Kode harus 200', () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('response Content-Type harus berisi application/json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base3000}}/v1/store/book/:kodeToko/:kodeBuku",
+							"host": [
+								"{{base3000}}"
+							],
+							"path": [
+								"v1",
+								"store",
+								"book",
+								":kodeToko",
+								":kodeBuku"
+							],
+							"variable": [
+								{
+									"key": "kodeToko",
+									"value": "{{kodeToko}}"
+								},
+								{
+									"key": "kodeBuku",
+									"value": "{{kodeBuku}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateBook",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"JSON Response\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData);",
+									"});",
+									"",
+									"pm.test('response Content-Type harus berisi application/json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.includes('application/json');",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Ga Belajar \",\n    \"price\": 40,\n    \"description\": \"Buku ini bagus\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base3000}}/v1/store/book/1ab32d76-8a24-45a5-985d-709c49afba32/4c057115-5c54-44c9-92a8-91af59bdb2b2",
+							"host": [
+								"{{base3000}}"
+							],
+							"path": [
+								"v1",
+								"store",
+								"book",
+								"1ab32d76-8a24-45a5-985d-709c49afba32",
+								"4c057115-5c54-44c9-92a8-91af59bdb2b2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteSingleBook",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"JSON Response\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base3000}}/v1/store/book/:kodeToko/:kodeBuku",
+							"host": [
+								"{{base3000}}"
+							],
+							"path": [
+								"v1",
+								"store",
+								"book",
+								":kodeToko",
+								":kodeBuku"
+							],
+							"variable": [
+								{
+									"key": "kodeToko",
+									"value": "{{kodeToko}}"
+								},
+								{
+									"key": "kodeBuku",
+									"value": "{{kodeBuku}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
